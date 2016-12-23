@@ -1,8 +1,8 @@
 /*
- Опыт по использованию Java FX (графический интерфейс)
- по книге Герберт Шилдт. Java 8 Руководство для начинающих 2015.pdf Глава 17
+ РћРїС‹С‚ РїРѕ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЋ Java FX (РіСЂР°С„РёС‡РµСЃРєРёР№ РёРЅС‚РµСЂС„РµР№СЃ)
+ РїРѕ РєРЅРёРіРµ Р“РµСЂР±РµСЂС‚ РЁРёР»РґС‚. Java 8 Р СѓРєРѕРІРѕРґСЃС‚РІРѕ РґР»СЏ РЅР°С‡РёРЅР°СЋС‰РёС… 2015.pdf Р“Р»Р°РІР° 17
  
- Выполняем Упражнение на стр. 621
+ Р’С‹РїРѕР»РЅСЏРµРј РЈРїСЂР°Р¶РЅРµРЅРёРµ РЅР° СЃС‚СЂ. 624 3 СЃРѕСЃС‚РѕСЏРЅРёРµ С„Р»Р°Р¶РєР°
  */
 
 package sample;
@@ -33,43 +33,43 @@ public class CheckBoxDemo extends Application {
   @Override
   public void start(Stage myStage) throws Exception
   {
-    System.out.println("B теле метода start()");
+    System.out.println("in start()");
     
     //Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-    myStage.setTitle("Демонстрируем CheckBox");
-    // создать корневой узел
+    myStage.setTitle("Demo CheckBox");
+    // СЃРѕР·РґР°С‚СЊ РєРѕСЂРЅРµРІРѕР№ СѓР·РµР»
     FlowPane rootNode = new FlowPane(Orientation.VERTICAL, 10, 10);
     rootNode.setAlignment(Pos.TOP_LEFT);
-    // создать сцену
-    responce = new Label("нажимание на на");
+    // СЃРѕР·РґР°С‚СЊ СЃС†РµРЅСѓ
+    responce = new Label("РЅР°Р¶РёРјР°РЅРёРµ РЅР° РЅР°");
         
     Scene myScene = new Scene(rootNode, 300,200);
     
-    // установить сцену на плтаформе
+    // СѓСЃС‚Р°РЅРѕРІРёС‚СЊ СЃС†РµРЅСѓ РЅР° РїР»С‚Р°С„РѕСЂРјРµ
     myStage.setScene(myScene);
     
-    // Создать метку
+    // РЎРѕР·РґР°С‚СЊ РјРµС‚РєСѓ
     Label heading= new Label("What Computers Do You Own?");
     
-    // создать метку, извещающую об изменении состояния флажка
+    // СЃРѕР·РґР°С‚СЊ РјРµС‚РєСѓ, РёР·РІРµС‰Р°СЋС‰СѓСЋ РѕР± РёР·РјРµРЅРµРЅРёРё СЃРѕСЃС‚РѕСЏРЅРёСЏ С„Р»Р°Р¶РєР°
     responce = new Label("r");
     
-    // создать метку, извещвющую о выборе любого флажка
+    // СЃРѕР·РґР°С‚СЊ РјРµС‚РєСѓ, РёР·РІРµС‰РІСЋС‰СѓСЋ Рѕ РІС‹Р±РѕСЂРµ Р»СЋР±РѕРіРѕ С„Р»Р°Р¶РєР°
     selected = new Label("s");
     
-    // создать флажки
+    // СЃРѕР·РґР°С‚СЊ С„Р»Р°Р¶РєРё
     cbSmartphone=new CheckBox("Smartphone");
     cbTablet = new CheckBox("Tablet");
     cbNotebook = new CheckBox("Notebook");
     cbDesktop = new CheckBox("Desktop");
     
-    // обработка событий действий для флажков
+    // РѕР±СЂР°Р±РѕС‚РєР° СЃРѕР±С‹С‚РёР№ РґРµР№СЃС‚РІРёР№ РґР»СЏ С„Р»Р°Р¶РєРѕРІ
     cbSmartphone.setOnAction(new EventHandler<ActionEvent>() {
       @Override
       public void handle(ActionEvent event) {
         String r="cleared";
-        if(cbSmartphone.isSelected())
-          r="SELECTED";
+        if(cbSmartphone.isSelected())   r="SELECTED";
+        if(cbSmartphone.isIndeterminate()) r="indeterminate";
         responce.setText("Smartphone was just "+r);
         showAll();
       }
@@ -105,20 +105,23 @@ public class CheckBoxDemo extends Application {
       }
     });
     
+    // 3 СЃРѕСЃС‚РѕСЏРЅРёРµ С„Р»Р°Р¶РєР°
+    cbSmartphone.setAllowIndeterminate(true);
+    
     rootNode.getChildren().add(heading);
     
     rootNode.getChildren().addAll(cbSmartphone, cbTablet, cbNotebook, cbDesktop);
   
     rootNode.getChildren().addAll(responce, selected);
   
-    // отобразить сцену и платформу
+    // РѕС‚РѕР±СЂР°Р·РёС‚СЊ СЃС†РµРЅСѓ Рё РїР»Р°С‚С„РѕСЂРјСѓ
     myStage.show();
     
     showAll();
   
   }
   
-  // Обновить и отобразить варианты выбора
+  // РћР±РЅРѕРІРёС‚СЊ Рё РѕС‚РѕР±СЂР°Р·РёС‚СЊ РІР°СЂРёР°РЅС‚С‹ РІС‹Р±РѕСЂР°
   protected void showAll()
   {
     computers = "";
@@ -132,19 +135,19 @@ public class CheckBoxDemo extends Application {
   
   public static void main(String[] args)
   {
-    System.out.println("Зaпycк приложения JavaFX");
+    System.out.println("startup application");
     launch(args);
   }
   
   @Override
   public void init() throws Exception {
-    System.out.println("B теле метода init()");
+    System.out.println("in init()");
     super.init();
   }
   
   @Override
   public void stop() throws Exception {
-    System.out.println("B теле метода stop");
+    System.out.println("in stop()");
     super.stop();
   }
 }
