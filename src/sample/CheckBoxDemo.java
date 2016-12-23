@@ -105,7 +105,7 @@ public class CheckBoxDemo extends Application {
       }
     });
     
-    // 3 состояние флажка
+    // 3 состояние флажка - разрешим
     cbSmartphone.setAllowIndeterminate(true);
     
     rootNode.getChildren().add(heading);
